@@ -1,0 +1,13 @@
+[package]
+name = "jwt-auth-client"
+version = "0.1.0"
+edition = "2021"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+jwks-client = { git = "https://github.com/jfbilodeau/jwks-client" }
+rocket = { version = "0.5.0-rc.1", optional = true, features = ["uuid"] }
+serde = { version = "1.0.136", features = ["derive"] }
+thiserror = "1.0.30"
+uuid = { version = "1.0.0", features = ["serde"] }
