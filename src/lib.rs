@@ -2,10 +2,19 @@ use jwks_client::error::Error as JwksError;
 pub use jwks_client::keyset::KeyStore;
 use serde::{Deserialize, Serialize};
 use thiserror::Error;
+use uuid::Uuid;
 
 const auth_url: &'static str = "https://raw.githubusercontent.com/jfbilodeau/jwks-client/0.1.8/test/test-jwks.json";
 
-
+#[derive(Error, Debug)]
+pub enum AuthError {
+    #[error("Error decoding")]
+    DecodeError(#[from] JwksError), 
+    #[error("Invalid JWT")]
+    TokenInvalid,
+    #[error("Missing JWT")]
+    TokenMissing,
+}
 
 /// Request context about a user's account
 pub struct AccountContext {
@@ -15,7 +24,7 @@ pub struct AccountContext {
 
 /// Attempt to validate token
 pub async fn validate_token(token: &str) -> Result<AccountContext, AuthError> {
-
+    
 }
 // use serde_derive::Deserialize;
 
